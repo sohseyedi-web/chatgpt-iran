@@ -3,8 +3,10 @@ import { auth, db } from '../../firebase-config';
 import Messages from './Messages';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
+import * as RiIcon from "react-icons/ri";
 
-const Chats = () => {
+
+const Chats = ({chatId}) => {
     const [user] = useAuthState(auth);
   const [messages] = useCollection(
     user && collection(db, "users", user?.email, "chat", chatId, "messages")
