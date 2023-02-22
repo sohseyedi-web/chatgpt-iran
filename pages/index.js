@@ -4,5 +4,5 @@ import Auth from '../components/Auth';
 export default function Home() {
   const [user] = useAuthState(auth);
 
-  return !user ? <Auth/> : <Intro />;
+  return !user ? <Auth/> : <Intro/>;
 }
