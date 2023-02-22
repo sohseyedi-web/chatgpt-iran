@@ -1,16 +1,20 @@
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '../../firebase-config';
-import Messages from './Messages';
-import { useCollection } from 'react-firebase-hooks/firestore';
-import { collection } from 'firebase/firestore';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../firebase-config";
+import Messages from "./Messages";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection, orderBy, query } from "firebase/firestore";
 import * as RiIcon from "react-icons/ri";
 
-
-const Chats = ({chatId}) => {
-    const [user] = useAuthState(auth);
+const Chats = ({ chatId }) => {
+  const [user] = useAuthState(auth);
   const [messages] = useCollection(
-    user && collection(db, "users", user?.email, "chat", chatId, "messages")
+    user &&
+      query(
+        collection(db, "users", user?.email, "chats", chatId, "messages"),
+        orderBy("createdAt", "asc")
+      )
   );
+
   return (
     <div className="flex-1  rounded-l overflow-y-auto overflow-x-hidden">
       {messages?.empty && (
@@ -27,7 +31,7 @@ const Chats = ({chatId}) => {
         <Messages key={msg.id} message={msg.data()} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Chats
+export default Chats;

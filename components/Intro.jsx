@@ -6,11 +6,11 @@ const Intro = () => {
     <Container>
       <section
         dir="rtl"
-        className="h-screen flex items-center justify-center text-white flex-col max-w-5xl mx-auto text-center"
+        className="md:h-screen  sm:mt-0 pt-20 flex items-center justify-center text-white flex-col md:w-[70%]  sm:w-[45%] w-[95%]  md:mx-auto text-center"
       >
         <h4 className="mb-8 font-semibold text-4xl">ChatGPT</h4>
         <div className="w-full flex items-center justify-between flex-wrap">
-          <div className="md:w-[31%] w-[45%] mb-10">
+          <div className="md:w-[31%] sm:w-[45%] w-[95%] mb-10">
             <div className="mb-5 flex items-center justify-center flex-col">
               <span className="mb-2">
                 <HiIcon.HiOutlineSun size={28} />
@@ -29,7 +29,7 @@ const Intro = () => {
               </p>
             </div>
           </div>
-          <div className="md:w-[31%] w-[45%] mb-10">
+          <div className="md:w-[31%] sm:w-[45%] w-[95%] mb-10">
             <div className="mb-5 flex items-center justify-center flex-col">
               <span className="mb-2">
                 <HiIcon.HiOutlineBolt size={28} />
@@ -48,7 +48,7 @@ const Intro = () => {
               </p>
             </div>
           </div>
-          <div className="md:w-[31%] w-[45%] mb-10">
+          <div className="md:w-[31%] sm:w-[45%] w-[95%] mb-10">
             <div className="mb-5 flex items-center justify-center flex-col">
               <span className="mb-2">
                 <HiIcon.HiOutlineExclamationTriangle size={28} />

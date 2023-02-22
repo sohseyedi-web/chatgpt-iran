@@ -1,6 +1,7 @@
 import queryApi from "../../lib/queryApi";
-import Logo from '../../public/logo.svg';
-import admin from 'firebase-admin'
+import Logo from "../../public/logo.svg";
+import admin from "firebase-admin";
+import { adminDb } from "../../firebase-admin";
 
 export default async function handler(req, res) {
   const { prompt, user, chatId } = req.body;
@@ -10,7 +11,7 @@ export default async function handler(req, res) {
   try {
     const response = await queryApi(prompt);
 
-    const message = {
+    const botMessage = {
       text: response || "Sorry",
       createdAt: admin.firestore.Timestamp.now(),
       user: {
@@ -20,17 +21,15 @@ export default async function handler(req, res) {
       },
     };
 
-    console.log(message);
+    await adminDb
+      .collection("users")
+      .doc(user?.email)
+      .collection("chats")
+      .doc(chatId)
+      .collection("messages")
+      .add(botMessage);
 
-    // await adminDb
-    //   .collection("users")
-    //   .doc(user?.email)
-    //   .collection("chats")
-    //   .doc(chatId)
-    //   .collection("messages")
-    //   .add(message);
-
-    res.status(200).json({ text: message.text });
+    res.status(200).json({ text: botMessage.text });
   } catch (error) {
     console.log(error);
   }
