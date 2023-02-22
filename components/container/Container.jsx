@@ -1,10 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Container = ({children}) => {
+const Container = ({ children }) => {
   return (
     <>
+      <Navbar />
+      {children}
     </>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;
