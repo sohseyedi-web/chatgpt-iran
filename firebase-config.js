@@ -3,12 +3,12 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBFumdFo0F-4X4ynnvDPEhQKvl7DeZHzgU",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "chatgpt-message-yt.firebaseapp.com",
   projectId: "chatgpt-message-yt",
   storageBucket: "chatgpt-message-yt.appspot.com",
   messagingSenderId: "880160655866",
-  appId: "1:880160655866:web:e4c21d1411af956aa5bc43",
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
